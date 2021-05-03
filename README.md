@@ -3,7 +3,7 @@ A collection of python tools that I've created.
 <h2><u>The PyAlly</u></h2>
 
 <p>
-Think of this program is a toolbox, it just has a collection of different tools that I use. Instead of craying multiple EXEs on my usb drive, I want to condense things, so I create "The PyAlly", and from it, I have access to all the different tools that I want to use.
+Think of this program is a toolbox, it just has a collection of different tools that I use. Instead of carying multiple EXEs on my usb drive, I wanted to condense things, so I created "The PyAlly", and from it, I have access to all the different tools that I want to use.
 </p>
 
 </br></br>
