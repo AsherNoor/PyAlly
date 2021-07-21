@@ -19,6 +19,7 @@ Then creates a wordlist..
 import string
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from time import sleep
+import pdfplumber
 import codecs
 
 
@@ -36,35 +37,18 @@ def pdf_extractor():
     '''-------------------------------- 
     The PDF info extraction Section 
     --------------------------------'''
-    # Opening the PDF file
-    PDFfile = open(ui_PDFFileName+".pdf", "rb")
-    # Reading the PDF file
-    pdfread = PdfFileReader(PDFfile, strict=False)
+    # This loops through the whole PDF
+    with pdfplumber.open(ui_PDFFileName+".pdf") as pdf:
+        page = pdf.pages
+        for i, pg in enumerate(page):
+            text = page[i].extract_text()
+            extracted =(f'-- PAGE: {i + 1} -- {text} \n\n')
+            #print(extracted)
+            # Write to a text file & close text file
+            with open("PDFextracted.txt", "a", encoding="utf-8") as text_file:
+                text_file.write(extracted)
+                text_file.close()
 
-    # Get the number of pages of this file.
-    num_of_pages = pdfread.numPages
-    print("One moment, reading ", ui_PDFFileName)
-    sleep(1)
-
-
-
-    '''------------------------------------------ 
-    The TEXT file creation & appending section 
-    ------------------------------------------'''
-    # A While loop to extract the whole file.
-    i = 0
-    while i < num_of_pages:
-        pageinfo = pdfread.getPage(i)
-        txt = pageinfo.extractText()
-
-        #Encode the txt to utf-8 (converts bytes to string)
-        encoded = txt.encode("utf-8")
-
-        # Write to a text file & close text file
-        text_file = open("PDFextracted.txt", "a")
-        text_file.write("Page: "+str(i+1)+"\n"+str(encoded)+"\n"*2)
-        text_file.close()
-        i += 1
 
     sleep(1)
     print("PDF text has been extracted.")
@@ -79,7 +63,7 @@ The Wordlist Creation
 # -- Creating the Text File
 def theTextFile (ui_PDFFileName):
     # -- Open and Read the file.
-    TheFile = open('PDFextracted.txt', 'r')
+    TheFile = open('PDFextracted.txt', 'r', encoding='UTF-8')
     # -- Extracting the text into a variable.
     text = TheFile.read()
     TheFile.close()
@@ -133,20 +117,3 @@ if __name__ == '__main__':
 
 
 
-
-
-
-"""
--------------------
-| The Scratch Pad |
--------------------
-Slices of codes that was not used.
-----------------------------------
-
-#This is only to display it on the screen.
-print("The while extract \n", encoded).
-
-
-
-
-"""

@@ -13,7 +13,9 @@ from subprocess import call
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from time import sleep
 import codecs
+import pdfplumber
 import _pyally_main as pyally
+import pikepdf
 
 '''------------------
 DEFINING MY FUNCTIONS
@@ -30,7 +32,53 @@ def pte_menu():
 ------------------------------------------------------------------------------------
 """)
     sleep(2)
-    extractor() # calling the extractor function.
+    # The PTE Menu Options: Decrypt or Extract
+    print("""\n-------------
+P.T.E. Menu
+-------------
+(1): Decrypt a PDF (You must have the password).
+(2): Extract text from a PDF.
+(3): Exit P.T.E.""")
+
+    # User Input
+    menu_answer = int(input("\nEnter Option: "))
+    if (menu_answer == 1):
+        pdf_decrypt() # Calling the Decryptor function.
+    elif (menu_answer == 2):
+        extractor() # Calling the Extractor function.
+    else:
+        pyally.mini_menu() # Calling the PyAlly mini menu.
+
+
+
+
+
+
+
+''' THE PDF DECRYPTER STARTS HERE '''
+def pdf_decrypt():
+    print("\n----------"
+          "\nIMPORTANT "
+          "\n----------"
+          "\nPlease make sure that PyAlly: P.T.E. & and your PDF file(s) are in the same file/folder location."
+          "\n-----------------------------------------------------------------------------------------"
+          "\n-- Decryptor --\n")
+    sleep(3)
+    # User Input:
+    the_book = input("Name of the Book without the '.pdf' : ")
+    the_password = input("The Password: ")
+
+    # Decrypting the file and saving the new one.
+    print("\nDecrypting your file now. "
+          "\nThis may take a few minutes depending on size.")
+    pdf = pikepdf.open(the_book+".pdf",password=the_password)
+    pdf.save('Decrypted_'+the_book+'.pdf')
+    print("Your PDF has been decrypted.")
+
+    # Go Back to menu function.
+    go_back_to_menu() # To go back to the P.T.E. Menu
+
+
 
 
 ''' THE TEXT EXTRACTOR STARTS HERE '''
@@ -41,7 +89,8 @@ def extractor():
           "\nIMPORTANT "
           "\n----------"
           "\nPlease make sure that PyAlly: P.T.E. & and your PDF file(s) are in the same file/folder location."
-          "\n-----------------------------------------------------------------------------------------\n")
+          "\n-----------------------------------------------------------------------------------------"
+          "\n-- Extractor --\n")
     sleep(3)
 
     '''--------------------- 
@@ -53,42 +102,21 @@ def extractor():
     # User Input : Name of the TXT file.
     ui_TextFileName = str(input("Your desired output TEXT file name without the '.txt': "))
 
-
-
     '''-------------------------------- 
     The PDF info extraction Section 
     --------------------------------'''
-    # Opening the PDF file
-    PDFfile = open(ui_PDFFileName+".pdf", "rb")
-    # Reading the PDF file
-    pdfread = PdfFileReader(PDFfile, strict=False)
+    # This loops through the whole PDF
+    with pdfplumber.open(ui_PDFFileName + ".pdf") as pdf:
+        page = pdf.pages
+        for i, pg in enumerate(page):
+            text = page[i].extract_text()
+            extracted = (f'-- PAGE: {i + 1} -- {text} \n\n')
+            # print(extracted)
+            # Write to a text file & close text file
+            with open(ui_TextFileName +".txt", "a", encoding="utf-8") as text_file:
+                text_file.write(extracted)
+                text_file.close()
 
-    # Get the number of pages of this file.
-    num_of_pages = pdfread.numPages
-    print("\nOne moment, reading", ui_PDFFileName)
-    sleep(2)
-    print("\nThe page count is: ", num_of_pages)
-    sleep(3)
-
-
-
-    '''------------------------------------------ 
-    The TEXT file creation & appending section 
-    ------------------------------------------'''
-    # A While loop to extract the whole file.
-    i = 0
-    while i < num_of_pages:
-        pageinfo = pdfread.getPage(i)
-        txt = pageinfo.extractText()
-
-        #Encode the txt to utf-8 (converts bytes to string)
-        encoded = txt.encode("utf-8")
-
-        # Write to a text file & close text file
-        text_file = open(ui_TextFileName + ".txt", "a")
-        text_file.write("Page: "+str(i+1)+"\n"+str(encoded)+"\n"*2)
-        text_file.close()
-        i += 1
 
 
     '''-----------------------------------------------
@@ -98,19 +126,19 @@ def extractor():
     sleep(2)
     print("\nYour output text file has been created.")
     sleep(1)
-    another_file()
+    go_back_to_menu() # To go back to the P.T.E. Menu
 
     ''' END OF EXTRACTOR FUNCTION '''
 
 
 # The "Another File" question
-def another_file():
-        af_answer = str(input("\nHave another file? [y/n]: ").lower().strip())
-        if af_answer == "y":
-            #-- Calling the extractor function again.
-            extractor()
+def go_back_to_menu():
+        gb_answer = str(input("\nGo back to the P.T.E. Menu? [y/n]: ").lower().strip())
+        if gb_answer == "y":
+            #-- Calling PTE Menu.
+            pte_menu()
         else:
-            #-- Go to the PyAlly Mini Menu
+            #-- Go to the PyAlly Mini Menu.
             pyally.mini_menu()
 
 
@@ -132,19 +160,3 @@ if __name__ == '__main__':
 
 
 
-
-
-"""
--------------------
-| The Scratch Pad |
--------------------
-Slices of codes that was not used.
-----------------------------------
-
-#This is only to display it on the screen.
-print("The while extract \n", encoded).
-
-
-
-
-"""

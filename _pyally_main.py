@@ -1,18 +1,22 @@
 """
 
+-------------------------------
+| PROGRAM NAME: The PyAlly .  |
+| Version #:  002 .           |
+| DATE:  July 2021.           |
 ------------------------------
-| PROGRAM NAME The PyAlly    |
-| Version #:  001            |
-| DATE:  April/May 2021      |
-------------------------------
-
-------------------------------------------------------------------------
-| EXPLANATION |                                                        |
-|--------------                                                        |
-| This is a toolbox of tools, if you will.                             |
-| I will keep adding more scripts/programs as I make them.             |
-| Trying to create a single program with some of my mostly used tools. |
-------------------------------------------------------------------------
+--------------------------------------------------------------------
+| UPDATES                                                         |
+|                                                                 |
+| Wordlister:                                                     |
+| +Using a different library (pdfplumber).                        |
+| +This improved the functionality of the program.                |
+|                                                                 |
+| PTE:                                                            |
+| +Using a different library (pdfplumber).                        |
+| +This improved the functionality of the program.                |
+| +Added a "Decrypt" option. Only works if you have the password. |
+--------------------------------------------------------------------
 
 
 ----------------------------------
