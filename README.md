@@ -22,7 +22,7 @@ Updated Info.
 
 <p>
 <b>Here is the collection so far:</b>
-</br>[1]: PDF Text Extractor.
+</br>[1]: PDF Text Extractor. (P.T.E.)
 </br>[2]: Wordlister. 
 </br>[3]: Hacker Helper. 
 </br>[4]: Base64 -er.
