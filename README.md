@@ -2,6 +2,7 @@
 A collection of python tools that I've created.
 <h2><u>The PyAlly</u></h2>
 
+
 <p>
 Think of this program is a toolbox, it just has a collection of different tools that I use. Instead of craying multiple EXEs on my usb drive, I want to condense things, so I create "The PyAlly", and from it, I have access to all the different tools that I want to use.
 </p>
@@ -9,7 +10,7 @@ Think of this program is a toolbox, it just has a collection of different tools 
 </br></br>
 <p>
 Updated Info.
-</br>Some updates were made improve some functionality.
+</br>Some updates were made to improve some functionality.
 </br>
 </br>Wordlister.
 </br>+ I'm now using "PDF Plumber" instead of "PyPDF", because it seems to be able to read more difficult PDFs, which is useful for this tool.
@@ -17,6 +18,14 @@ Updated Info.
 </br>P.T.E. 
 </br>+ Now has a "Decrypt" option which can make a non-password copy of a password protected PDF. (You must have the password).
 </br>+ I'm now using "PDF Plumber" here as well, instead of "PyPDF".
+
+</br></br>
+NOTE:
+</br>
+- I deleted the PyAlly.exe, it is having trouble running the PDF "Decrypt" function.
+</br>
+Yet the .py file runs it just fine. 
+
 </p>
 </br></br>
 
@@ -67,13 +76,16 @@ Updated Info.
 
 <p>
 <b>How to Run PyAlly?</b>
-</br><u>Windows:</u> 
-</br>You can simply run the PyAlly.exe and your good to go.
+</br><u>IDE:</u>
+</br>Use your favorite IDE to run the _pyally_main.py, and that will run the program for you.
 
-</br><u>Linux:</u>
-</br>Use your favorite IDE to run the PyAlly.py, and that will run the program for you.
+</br></br>
 
-</br>You can also run each the .py of any of the individual programs if you like.
+<u>Command Prompt:</u>
+</br>If you have Python installed on your machine (Windows / *nix).
+ </br>run the following:    python _pyally_main.py
+
+</br>You can also run each of the .py of any of the individual programs as well.
 </p>
 
 
