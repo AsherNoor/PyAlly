@@ -3,9 +3,21 @@ A collection of python tools that I've created.
 <h2><u>The PyAlly</u></h2>
 
 <p>
-Think of this program is a toolbox, it just has a collection of different tools that I use. Instead of carying multiple EXEs on my usb drive, I wanted to condense things, so I created "The PyAlly", and from it, I have access to all the different tools that I want to use.
+Think of this program is a toolbox, it just has a collection of different tools that I use. Instead of craying multiple EXEs on my usb drive, I want to condense things, so I create "The PyAlly", and from it, I have access to all the different tools that I want to use.
 </p>
 
+</br></br>
+<p>
+Updated Info.
+</br>Some updates were made improve some functionality.
+</br>
+</br>Wordlister.
+</br>+ I'm now using "PDF Plumber" instead of "PyPDF", because it seems to be able to read more difficult PDFs, which is useful for this tool.
+</br>
+</br>P.T.E. 
+</br>+ Now has a "Decrypt" option which can make a non-password copy of a password protected PDF. (You must have the password).
+</br>+ I'm now using "PDF Plumber" here as well, instead of "PyPDF".
+</p>
 </br></br>
 
 <p>
@@ -26,9 +38,12 @@ Think of this program is a toolbox, it just has a collection of different tools 
 <b>What does each one do?</b>
 </br>[1]: PDF Text Extractor.
 </br>Give it a PDF file, and it will extract the text, and give you a text file. Does not work with OCR PDFs, yet.
+</br>This now uses the PDF Plumber library, which allows it work with more difficult PDFs.
+</br>It now also has a "Decrypt" option. If you have a password protected PDF, run this program, choose "Decrypt", give it the password, and it will created a non-password PDF copy for you.
 
 </br>[2]: Wordlister. 
 </br>Give it a PDF or a Text file, it will extract the text, remove number, puncuations, and duplicts, and gives you a list of the words in that file. Does not work wiht OCR PDFS, yet.
+</br>This now uses the PDF Plumber library, which allows it work with more difficult PDFs.
 
 </br>[3]: Hacker Helper. 
 </br>Give it an IP address, it will give you a text file with the common commands (nmap, gobuster, hydra, ect..)that you would use in a CTF, with your IP already inserted, so that you can simply copy and paste the commands into your terminal.
